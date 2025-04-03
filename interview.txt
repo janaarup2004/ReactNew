@@ -1,0 +1,123 @@
+Reconciliation is one of the most important concepts by which React updates the DOM efficiently. This mechanism ensures that UI updates are optimized, minimizing performance overhead and improving the user experience
+Reconsilation is the algorithm behind what is popularly understood as the "virtual DOM".
+
+What is Reconciliation in ReactJS?
+React Reconciliation refers to React’s process of comparing the current and previous states of the Virtual DOM and updating the DOM efficiently. It makes the DOM updates faster in React. It updates the virtual DOM first and then uses the diffing algorithm to make efficient and optimized updates in the Real DOM.
+
+React Fiber is a concept of ReactJS that is used to render a system faster and smoother. React is one of the popular JavaScript library used to create a responsive user interface. React makes coding simple as compared to other frameworks. After certain changes who is the next element to render the system called reconciler. This algorithm helps to compare two DOM trees and diff them. React fiber helps to do it better.
+
+useState : the useState is a Hook that allows you to add state to functional components.
+           useState returns an array with two values: the current state and a function to update it. The Hook takes an initial state value as an argument and returns an updated state value whenever the setter function is called
+
+hydration : Jab pehli baar page load hota hai, buttons aur images dikhte hain (HTML aa gaya), lekin kuch click nahi hota kyunki JavaScript ab tak load nahi hui hoti. Phir jab JavaScript load ho ke React ko HTML ke saath connect karti hai aur sab interactive ho jata hai, us process ko hydration bolte hain. aur ye fibre algorithm k through kaafi aachi hoti hai.
+
+useCallback : useCallback is a React Hook that lets you cache a function definition between re-renders.
+   const cachedFn = useCallback(fn, dependencies)
+
+
+
+
+Q.1) why we need hooks in react js
+Ans: 	
+The introduction of React Hooks has changed the way we are managing states and lifecycle features. They offer more easy and functional way as compared to class based components.
+Hooks are special functions in React that let you use features like state (a way to remember things) and do things when your component loads or updates, all from within function components. 
+This means you can do a lot more with simple functions without needing to write class components.
+
+Q.2) what is render?
+Ans:
+Rendering in React refers to the process of displaying components and elements on the user interface. 
+React utilizes a virtual DOM to optimize this process. When changes occur in a component's state or props, React updates the virtual DOM and compares it to the previous version, updating only the necessary parts of the actual DOM. 
+To render a React component, the render function from react-dom is used.
+
+Q.3)Fiber?
+Ans:
+ React Fiber is a concept of ReactJS that is used to render a system faster and smoother. React is one of the popular JavaScript library used to create a responsive user interface.
+  React makes coding simple as compared to other frameworks. After certain changes who is the next element to render the system called reconciler. This algorithm helps to compare two DOM trees and diff them. React fiber helps to do it better.
+React Fiber is a reimplementation of React's core reconciliation algorithm, introduced in React 16. It aims to improve performance, especially in complex applications, by enabling incremental rendering. Instead of performing updates in a single, blocking operation, Fiber breaks down the rendering process into smaller, manageable units of work. These units, known as "fibers," can be paused, prioritized, and resumed, allowing React to handle high-priority updates (e.g., user interactions) more quickly and maintain a smoother user experience.
+	
+Q.4) why we use <a> tag?(Link and NavLink what are these)
+
+Q.5) Context API ?
+Ans:
+The React Context API is a built-in feature that allows you to share data across multiple components without 
+having to pass props manually through every level of your component tree, effectively acting as a global state management solution. 
+
+Q.6)Comparison between Redux vs Redux Toolkit
+Ans:
+Redux requires a lot of boilerplate code but implementing RTK reduces this as it only needs
+ a single call function. It is difficult to learn Redux because of its complexity,
+ but the opinionated approach of Redux Toolkit makes it easy to get started.
+"https://redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif"
+​Redux helps you manage "global" state - state that is needed across many parts of your application. 
+The patterns and tools provided by Redux make it easier to understand when, where, why, and how the state in your application is being updated, and how your application logic will behave when those changes occur.
+
+
+Q.7)Is Zustand better than Redux?
+Ams:
+Zustand and Redux are both React state management libraries, but Zustand is generally preferred 
+for smaller to medium-sized projects due to its simplicity and ease of use, while Redux is better suited for large, complex applications that require a more structured approach. 
+
+Q.8)use context and create context in react
+Ans:[https://www.google.com/search?q=use+context+and+create+context+in+react&sca_esv=188c718aff982ef6&sxsrf=AHTn8zobyjZNSguu9Sz55xawqHhY-yAT5w%3A1743476750664&ei=DljrZ9uIKLXu4-EPspGakAE&ved=0ahUKEwjbx5aD7bWMAxU19zgGHbKIBhIQ4dUDCBA&uact=5&oq=use+context+and+create+context+in+react&gs_lp=Egxnd3Mtd2l6LXNlcnAiJ3VzZSBjb250ZXh0IGFuZCBjcmVhdGUgY29udGV4dCBpbiByZWFjdDIHEAAYgAQYDTILEAAYgAQYhgMYigUyCxAAGIAEGIYDGIoFMgsQABiABBiGAxiKBTIIEAAYgAQYogRI6SBQAFjWFXAAeAGQAQCYAfIBoAHyAaoBAzItMbgBA8gBAPgBAZgCAaAC-gGYAwCSBwMyLTGgB-sF&sclient=gws-wiz-serp]
+In React, Context provides a way to share values like state, functions, or data between components without explicitly passing props through each level of the component tree. createContext is used to create a context, and useContext is a hook that allows functional components to access the values provided by that context. 
+Creating Context
+A context is created using React.createContext(). This function returns a context object, which includes a Provider and a Consumer. The Provider is used to wrap the part of the component tree that needs access to the context's value, and the Consumer (or useContext hook) is used to read the context value in the components.
+Code
+
+import React, { createContext } from 'react';
+
+const MyContext = createContext(null); // Initial value of the context
+Providing Context Value
+The Provider component is used to wrap the components that need access to the context value. It accepts a value prop, which is the data you want to share. Any component within the Provider can access this value.
+Code
+
+import React from 'react';
+import ComponentA from './ComponentA';
+import MyContext from './MyContext';
+
+function MyProvider({ children }) {
+  const contextValue = {
+    message: 'Hello from context!',
+  };
+
+  return (
+    <MyContext.Provider value={contextValue}>
+      {children}
+    </MyContext.Provider>
+  );
+}
+
+function App() {
+  return (
+    <MyProvider>
+      <ComponentA />
+    </MyProvider>
+  );
+}
+
+Consuming Context Value with useContext
+The useContext hook is used to access the context value within a functional component. It takes the context object as an argument and returns the current context value. 
+Code
+
+import React, { useContext } from 'react';
+import MyContext from './MyContext';
+
+function ComponentA() {
+  const context = useContext(MyContext);
+
+  return (
+    <div>
+      <p>{context.message}</p>
+    </div>
+  );
+}
+
+Q.10)React-redux?
+ans:
+React Redux Is used for making a bridge between react and core redux.
+ react-redux is used for communication between react and redux & redux-toolkit is used for reducing the size/number of lines of the redux code
+ React-Redux is the official binding library that connects React with Redux. It provides hooks
+  like useSelector, useDispatch, and Provider that allow React components to interact with the Redux store.
+
+  Redux and React-Redux are two different things.
+  Redux is the core library, where as React-Redux is the implementation of that. 
